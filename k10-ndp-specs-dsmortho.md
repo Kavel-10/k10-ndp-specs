@@ -179,20 +179,20 @@ The tile index shall be delivered as GeoPackage (`.gpkg`).
 
 ## 13. Technical Summary
 
-| Property | Requirement |
-|---|---|
-| Product | DSMOrtho |
+| Property | Requirement                  |
+|---|------------------------------|
+| Product | DSMOrtho                     |
 | Delivery | S3-compatible object storage |
-| Structure | Per product and per subarea |
-| Tile index | Required |
-| Tile index format | GeoPackage |
-| Tile size | 600 m × 600 m |
-| Resolution | 0.02 m or 0.03 m |
-| Format | Cloud Optimized GeoTIFF |
-| Bands | RGB |
-| Data type | UInt8 |
-| Bits per sample | 8 |
-| Colour depth | 24 bit |
-| Compression | JPEG |
-| Block size | 512 × 512 pixels |
-| NoData | RGB (0,0,0) |
+| Structure | Per product and per subarea  |
+| Tile index | Required                     |
+| Tile index format | GeoPackage                   |
+| Tile size | 600 m × 600 m                |
+| Resolution | 0.02 m or 0.03 m             |
+| Format | Cloud Optimized GeoTIFF      |
+| Bands | RGB                          |
+| Data type | UInt8                        |
+| Bits per sample | 8                            |
+| Colour depth | 24 bit                       |
+| Compression | JPEG (85%)                   |
+| Block size | 512 × 512 pixels             |
+| NoData | RGB (0,0,0)                  |
