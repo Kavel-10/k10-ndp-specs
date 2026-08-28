@@ -1,11 +1,12 @@
 # DSM Delivery Specification
 ### Revision History
-| Version | Date | Author | Description |
-|---------|------------|--------|-------------|
-| 0.1.0 | 2026-06-20 | Kavel10 | Initial draft |
-| 0.9.0 | 2026-06-28 | Kavel10 | Technical review |
-| 1.0.0 | 2026-06-29 | Kavel10 | First official release |
-
+| Version | Date       | Author | Description                |
+|---------|------------|--------|----------------------------|
+| 0.1.0   | 2026-06-20 | Kavel10 | Initial draft              |
+| 0.9.0   | 2026-06-28 | Kavel10 | Technical review           |
+| 1.0.0   | 2026-06-29 | Kavel10 | First official release     |
+| 1.1.0 | 2026-08-17 | Kavel10 | Added file naming, corrected delivery structure |
+---
 ## 1. Scope
 
 This document defines the delivery requirements for the Digital Surface Model (DSM) product.
@@ -24,15 +25,26 @@ A DSM delivery conforms to this specification if all mandatory requirements in t
 | Access protocol | HTTPS / S3 API |
 | Structure | Per product and per subarea |
 
-## 4. Delivery Structure
+## 4. Naming & Delivery Structure
 
+Tile filenames are generated automatically, containing the coordinate of the tile's lower-left corner (e.g. `X129600_Y457200`).
+
+| Property | Requirement                                                                                   |
+|---|-----------------------------------------------------------------------------------------------|
+| Filename pattern | `<ProductType>-X<X>_Y<Y>-<Resolution>cm.tif`                                                  |
+| Example | `DSMOrtho-X129600_Y457200-3cm.tif`                                                            |
+| `<ProductType>` | `DSMOrtho`                                                                                    |
+| `X<X>_Y<Y>` | Lower-left corner coordinate of the tile |
+| `<Resolution>` | Ground Sampling Distance in centimetres                                                       |
+
+Data will be delivered according to the folliwing folder structure:
 ```text
 DSM/
 ├── Area_01/
 │   ├── TileIndex.gpkg
 │   └── Tiles/
-│       ├── DSM_001.tif
-│       ├── DSM_002.tif
+│       ├── DSM-X178800_Y511800-3cm.tif
+│       ├── DSM-X179000_Y511800-3cm.tif
 │       └── ...
 └── Area_02/
     ├── TileIndex.gpkg
