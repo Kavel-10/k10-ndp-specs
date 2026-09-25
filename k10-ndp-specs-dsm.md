@@ -1,11 +1,12 @@
 # DSM Delivery Specification
 ### Revision History
-| Version | Date       | Author | Description                |
-|---------|------------|--------|----------------------------|
-| 0.1.0   | 2026-06-20 | Kavel10 | Initial draft              |
-| 0.9.0   | 2026-06-28 | Kavel10 | Technical review           |
-| 1.0.0   | 2026-06-29 | Kavel10 | First official release     |
-| 1.1.0 | 2026-08-17 | Kavel10 | Added file naming, corrected delivery structure |
+| Version | Date       | Author | Description                                     |
+|---------|------------|--------|-------------------------------------------------|
+| 0.1.0   | 2026-06-20 | Kavel10 | Initial draft                                   |
+| 0.9.0   | 2026-06-28 | Kavel10 | Technical review                                |
+| 1.0.0   | 2026-06-29 | Kavel10 | First official release                          |
+| 1.1.0   | 2026-08-17 | Kavel10 | Added file naming, corrected delivery structure |
+| 1.1.1   | 2026-09-25 | Kavel10 | Changed compression method                      |
 ---
 ## 1. Scope
 
@@ -120,13 +121,12 @@ Each DSM tile shall be encoded as a Cloud Optimized GeoTIFF.
 
 ## 10. Compression
 
-| Property | Requirement |
-|---|---|
-| Compression type | Lossless |
-| Supported compression | DEFLATE or ZSTD |
-| Predictor | 3 for Float32 data |
+| Property | Requirement    |
+|---|----------------|
+| Compression type | Lossy          |
+| Supported compression | LERC_DEFLATE * |
 
-Lossy compression methods shall not be used for DSM elevation data.
+GDAL 3.12+ with libtiff required
 
 ## 11. Tile Index
 
@@ -145,19 +145,19 @@ The tile index shall be delivered as GeoPackage (`.gpkg`).
 
 ## 12. Technical Summary
 
-| Property | Requirement |
-|---|---|
-| Product | Digital Surface Model |
+| Property | Requirement                  |
+|---|------------------------------|
+| Product | Digital Surface Model        |
 | Delivery | S3-compatible object storage |
-| Structure | Per product and per subarea |
-| Tile index | Required |
-| Tile index format | GeoPackage |
-| Tile size | 600 m × 600 m |
-| Resolution | 0.02 m or 0.03 m |
-| Format | Cloud Optimized GeoTIFF |
-| Raster type | Single band |
-| Data type | Float32 |
-| Bits per sample | 32 |
-| NoData | -9999.0 |
-| Compression | DEFLATE or ZSTD |
-| Block size | 512 × 512 pixels |
+| Structure | Per product and per subarea  |
+| Tile index | Required                     |
+| Tile index format | GeoPackage                   |
+| Tile size | 600 m × 600 m                |
+| Resolution | 0.02 m or 0.03 m             |
+| Format | Cloud Optimized GeoTIFF      |
+| Raster type | Single band                  |
+| Data type | Float32                      |
+| Bits per sample | 32                           |
+| NoData | -9999.0                      |
+| Compression | LERC_DEFLATE                 |
+| Block size | 512 × 512 pixels             |
